@@ -1,0 +1,18 @@
+login: &login
+  adapter: mysql
+  encoding: utf8
+  pool: 5
+  username: root
+  password: 
+
+development:
+  <<: *login
+  database: my_blog_development
+
+test:
+  <<: *login
+  database: my_blog_test
+
+production:
+  <<: *login
+  database: my_blog
