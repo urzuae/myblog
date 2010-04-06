@@ -15,7 +15,7 @@
 
   <%= render :partial => "comment", :collection =>  @comments %>
 
-<a id="comments"/>
+<a id="comments"></a>
 <% form_for(@comment, :url => post_comments_path(@post) ) do |f| %>
   <p>
 	<%= f.label :content %> :<br/>
