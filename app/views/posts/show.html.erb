@@ -13,10 +13,10 @@
   <%=h @category.name %>
 </p>
 
-  <%= render :partial => "comment", :collection =>  @comments %>
+  <%= render @comments %>
 
 <a id="comments"></a>
-<% form_for(@comment, :url => post_comments_path(@post) ) do |f| %>
+<% form_for @comment, :url => post_comments_path(@post) do |f| %>
   <p>
 	<%= f.label :content %> :<br/>
 	<%= f.text_area :content %>

@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   
   def create
     
-    @comment = Comment.new(params[:comment])
+    @comment = @post.comments.build(params[:comment])
     
     flash[:notice] = if @comment.save
       'Comment was successfully created'
