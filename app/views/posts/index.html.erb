@@ -1,35 +1,9 @@
-<h1>Listing posts</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Content</th>
-    <th>Category</th>
-  </tr>
+<% title "Posts", false %>
 
 <% @posts.each do |post| %>
-  <% @category = Category.find(post.category_id) %>
-
-  <tr>
-    <td><%=h post.title %></td>
-    <td><%=h post.content %></td>
-    <td><%=h @category.name %></td>
-  </tr>
-  <tr>
-	<td>
-	    <%= link_to 'Show', post %>
-	    <%= link_to 'Edit', edit_post_path(post) %>
-	    <%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %>
-	</td>
-  </tr>
-  <tr>
-	<td>
-		<%= link_to 'Add comment', post_path(post, :anchor => 'comments') %>
-	</td>
-  </tr>
+	<% div_for post do %>
+		<h2><%=h post.title %></h2>
+		<small>In category: <%=h post.category.name %></small>
+		<%= simple_format h(post.content) %>
+	<% end %>
 <% end %>
-</table>
-
-<br />
-
-<%= render "link_to_new" %>
