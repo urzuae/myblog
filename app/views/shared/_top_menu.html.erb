@@ -4,7 +4,7 @@
 		|
 		<%= link_to 'Register', new_user_path %>
 	<% else %>
-		Hello X,
+		Hello <strong><%= current_user.username %></strong>,
 		<%= link_to 'Publish post', new_post_path %>
 		|
 		<%= link_to 'Logout', logout_path %>

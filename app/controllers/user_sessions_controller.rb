@@ -17,8 +17,7 @@ class UserSessionsController < ApplicationController
   end
   
   def destroy
-    @user = User.find(session[:user_id])
-    @user.destroy
+    @user = current_user
     session[:user_id] = nil
     redirect_to root_path
   end
