@@ -3,7 +3,11 @@ class UserSessionsController < ApplicationController
   end
   
   def create
-    @user = User.find(:first, :conditions => {:username => params[:username], :encrypted_password => params[:password]})
+    password = Digest::SHA1.hexdigest(params[:password]) unless params[:password].blank?
+    @user = User.find(:first, :conditions => {
+      :username => params[:username],
+      :encrypted_password => password
+    })
     if @user
       session[:user_id] = @user.id
       redirect_to root_path
