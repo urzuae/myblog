@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :posts
+  
   validates_presence_of :username, :encrypted_password, :email
   validates_uniqueness_of :username
   before_save :encrypt_password

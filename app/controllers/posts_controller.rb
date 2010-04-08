@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_filter :require_authentication, :except => [:index, :show]
   
   def index
-    @posts = Post.all
+    @posts = Post.all(:include => [:category, :user])
   end
 
   def show
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 
     if @post.update_attributes(params[:post])
       flash[:notice] = 'Post was successfully updated.'
-      redirect_to @post
+      redirect_to posts_path
     else
       render 'edit'
     end

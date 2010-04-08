@@ -1,4 +1,6 @@
 <p>
+	<%= link_to 'Index', posts_path %>
+	-
 	<% unless logged_in? %>
 		<%= link_to 'Login', login_path %>
 		|
@@ -6,6 +8,8 @@
 	<% else %>
 		Hello <strong><%= current_user.username %></strong>,
 		<%= link_to 'Publish post', new_post_path %>
+		|
+		<%= link_to 'Categories', categories_path %>
 		|
 		<%= link_to 'Logout', logout_path %>
 	<% end %>

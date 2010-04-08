@@ -3,7 +3,20 @@
 <% @posts.each do |post| %>
 	<% div_for post do %>
 		<h2><%=h post.title %></h2>
-		<small>In category: <%=h post.category.name %></small>
+		<small>
+			<% if logged_in? %>
+				<p>
+					<%= link_to 'Edit', edit_post_path(post) %>
+					<%= link_to 'Delete', post_path(post), :method => :delete, :confirm => "Are you sure?" %>
+				</p>
+			<% end %>
+			
+			In category: <%=h post.category.name %>
+			|
+			Written <%= post.created_at.to_s(:long) %>
+			|
+			by <%= post.user.username %>
+		</small>
 		<%= simple_format h(post.content) %>
 	<% end %>
 <% end %>
