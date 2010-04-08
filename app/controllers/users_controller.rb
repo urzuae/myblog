@@ -14,18 +14,11 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
-    @user.check_fields
-    if @user.errors.empty?
-      flash.now[:error] = "Error"
-      render 'new'
+    if @user.save
+      flash[:notice] = "Successfully created user."
+      redirect_to @user
     else
-      @user.crypt_password
-      if @user.save
-        flash[:notice] = "Successfully created user."
-        redirect_to @user
-      else
-        render :action => 'new'
-      end
+      render 'new'
     end
   end
   
