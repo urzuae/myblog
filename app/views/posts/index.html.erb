@@ -2,7 +2,7 @@
 
 <% @posts.each do |post| %>
 	<% div_for post do %>
-		<h2><%=h post.title %></h2>
+		<h2><%= link_to h(post.title), post_path(post) %></h2>
 		<small>
 			<% if logged_in? %>
 				<p>

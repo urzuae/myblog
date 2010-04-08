@@ -18,16 +18,16 @@
 <a id="comments"></a>
 <% form_for @comment, :url => post_comments_path(@post) do |f| %>
   <p>
-	<%= f.label :content %> :<br/>
-	<%= f.text_area :content %>
+		<%= f.label :author, 'Name' %>:<br />
+		<%= f.text_field :author %>
   </p>
   <p>
-	<%= f.label :author %> : 
-	<%= f.text_field :author%><br/>
+		<%= f.label :url %>:<br />
+		<%= f.text_field :url %>
   </p>
-  <p>
-	<%= f.label :url %> : 
-	<%= f.text_field :url %><br/>
+	<p>
+		<%= f.label :content, 'Comment' %> :<br/>
+		<%= f.text_area :content, :rows => 5, :cols => 50 %>
   </p>
   <p>
     <%= f.submit 'Add comment' %>
