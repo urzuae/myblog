@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_filter :find_category, :only => [:show, :edit, :update, :destroy]
+  before_filter :require_authentication, :except => [:index, :show]
   
   def index
     @categories = Category.all
@@ -40,6 +41,8 @@ class CategoriesController < ApplicationController
     @category.destroy
     redirect_to categories_path
   end
+  
+  private
   
   def find_category
     @category = Category.find(params[:id])

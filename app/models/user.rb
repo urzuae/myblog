@@ -1,9 +1,13 @@
 class User < ActiveRecord::Base
   validates_presence_of :username, :encrypted_password, :email
   validates_uniqueness_of :username
-  before_save :crypt_password
+  before_save :encrypt_password
   
-  def crypt_password
-    self.encrypted_password = Digest::SHA1.hexdigest(encrypted_password) unless encrypted_password.blank?
+  def encrypt_password
+    self.encrypted_password = self.class.crypt_password(self.encrypted_password)
+  end
+  
+  def self.crypt_password(password)
+    Digest::SHA1.hexdigest(password) unless password.blank?
   end
 end

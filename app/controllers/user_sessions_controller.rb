@@ -3,10 +3,9 @@ class UserSessionsController < ApplicationController
   end
   
   def create
-    password = Digest::SHA1.hexdigest(params[:password]) unless params[:password].blank?
     @user = User.find(:first, :conditions => {
       :username => params[:username],
-      :encrypted_password => password
+      :encrypted_password => User.crypt_password(params[:password])
     })
     if @user
       session[:user_id] = @user.id

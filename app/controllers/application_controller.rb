@@ -7,4 +7,20 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+  
+  helper_method :logged_in?
+  
+  protected
+  
+  def logged_in?
+    @user = User.find_by_id(session[:user_id])
+    !@user.nil?
+  end
+  
+  def require_authentication
+    unless logged_in?
+      flash[:error] = "You need to login first"
+      redirect_to login_path
+    end
+  end
 end

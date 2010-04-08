@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_filter :find_post, :only => [:show, :edit, :update, :destroy]
   before_filter :find_categories, :only => [:new, :edit, :create, :update]
+  before_filter :require_authentication, :except => [:index, :show]
   
   def index
     @posts = Post.all
@@ -58,5 +59,4 @@ class PostsController < ApplicationController
   def find_categories
     @categories = Category.find(:all)
   end
-  
 end
