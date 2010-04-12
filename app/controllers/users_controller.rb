@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:notice] = "Successfully created user."
+      session[:user_id] = @user.id
       redirect_to @user
     else
       render 'new'
