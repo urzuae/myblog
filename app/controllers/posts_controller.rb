@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :find_post, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_post, :only => [:edit, :update, :destroy]
   before_filter :find_categories, :only => [:new, :edit, :create, :update]
   before_filter :require_authentication, :except => [:index, :show]
   
@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find_by_title!(params[:id])
     @comment = Comment.new
     @comments = @post.comments
     @category = Category.find(@post.category_id)

@@ -13,6 +13,12 @@ describe Post do
     post.errors.on(:title).should_not be_nil
   end
   
+  it "should validate uniqueness of title" do
+    create_post(:title => "lorem")
+    post = create_post(:title => "lorem")
+    post.errors.on(:title).should_not be_nil
+  end
+  
   it "should validate presence of content" do
     post = create_post(:content => '')
     post.errors.on(:content).should_not be_nil
