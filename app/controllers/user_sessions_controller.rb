@@ -3,15 +3,17 @@ class UserSessionsController < ApplicationController
   end
   
   def create
-    @user = User.find(:first, :conditions => {
-      :username => params[:username],
-      :encrypted_password => User.crypt_password(params[:password])
-    })
+    @user = User.find(:first, :conditions => {:username => params[:username]})
     if @user
-      session[:user_id] = @user.id
-      redirect_to root_path
+      if User.crypt_password(params[:password] + @user.password_salt) == @user.encrypted_password
+        session[:user_id] = @user.id
+        redirect_to root_path
+      else
+        flash.now[:error] = "Invalid password"
+        render 'new'
+      end
     else
-      flash.now[:error] = "Invalid username/password"
+      flash.now[:error] = "Invalid username"
       render 'new'
     end
   end
