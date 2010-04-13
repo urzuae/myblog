@@ -1,4 +1,6 @@
 # Settings specified here will take precedence over those in config/environment.rb
+config.gem "rspec", :lib => false
+config.gem "rspec-rails", :lib => false
 
 # The test environment is used exclusively to run your application's
 # test suite.  You never need to work with it otherwise.  Remember that
