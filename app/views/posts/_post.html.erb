@@ -1,0 +1,15 @@
+<small>
+	<% if logged_in? %>
+		<p>
+			<%= link_to 'Edit', edit_post_path(post) %>
+			<%= link_to 'Delete', post_path(post), :method => :delete, :confirm => "Are you sure?" %>
+		</p>
+	<% end %>
+	
+	In category: <%= link_to h(post.category.name), category_path(post.category) %>
+	|
+	Written <%= post.created_at.to_s(:long) %>
+	|
+	by <%= post.user.username %>
+</small>
+<%= simple_format h(post.content) %>

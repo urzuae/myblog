@@ -1,8 +1,8 @@
-<p>
-  <b>Category:</b><br/>
-  <p>
-  <%=h @category.name %>
-  </p>
-</p>
+<% title @category.name %>
 
-<%= link_to 'Back', categories_path if logged_in?%>
+<% @category.posts.each do |post| %>
+	<% div_for post do %>
+		<h2><%= link_to h(post.title), post_path(post) %></h2>
+		<%= render post %>
+	<% end %>
+<% end %>

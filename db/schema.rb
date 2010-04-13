@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(:version => 20100413142042) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "admin"
     t.string   "password_salt"
   end
 

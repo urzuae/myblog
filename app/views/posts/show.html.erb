@@ -1,17 +1,9 @@
-<p>
-  <b>Title:</b>
-  <%=h @post.title %>
-</p>
+<% div_for @post do %>
+	<% title h(@post.title) %>
+	<%= render @post %>
+<% end %>
 
-<p>
-  <b>Content:</b>
-  <%=h @post.content %>
-</p>
-
-<p>
-  <b>Category:</b>
-  <%=h @category.name %>
-</p>
+<h2>Comments</h2>
 
   <%= render @comments %>
 
@@ -33,8 +25,3 @@
     <%= f.submit 'Add comment' %>
   </p>
 <% end %>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
-
-<%= render "link_to_new" %>

@@ -1,9 +1,4 @@
-<p>Content : <br/>
-	<%=h comment.content %>
-</p>
-<p>Author : <br/>
-	<%=h comment.author %>
-</p>
-<p>url : <br/>
-	<%=h comment.url %>
-</p>
+<% div_for comment do %>
+by <%= author_link comment %> @ <%= comment.created_at.to_s(:short) %><br/>
+<%=h comment.content %>
+<% end %>
