@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
+
   has_many :posts
-  
   validates_presence_of :username, :encrypted_password, :email
-  validates_uniqueness_of :username
+  validates_uniqueness_of :username, :email
   before_save :encrypt_password
   
   def encrypt_password

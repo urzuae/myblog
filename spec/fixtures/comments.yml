@@ -1,0 +1,20 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# one:
+#   column: value
+#
+# two:
+#   column: value
+
+unliked:
+  content: I like this
+  author: Matusalem
+  url: http://www.google.com.mx
+  post_id: 2
+
+
+awesome:
+  content: blablabla
+  author: Anyone
+  url: ''
+  post_id: 1
