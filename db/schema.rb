@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100413142042) do
+ActiveRecord::Schema.define(:version => 20100416153029) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -35,13 +35,25 @@ ActiveRecord::Schema.define(:version => 20100413142042) do
     t.integer  "user_id"
   end
 
+  create_table "privileges", :force => true do |t|
+    t.string   "permission"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_privileges", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "privilege_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "encrypted_password"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "admin"
     t.string   "password_salt"
   end
 

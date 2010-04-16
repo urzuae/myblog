@@ -5,10 +5,14 @@
 
 <h2>Comments</h2>
 
-  <%= render @comments %>
+  <div id='comments' >
+  	<%= render @comments %>
+  </div>
 
 <a id="comments"></a>
-<% form_for @comment, :url => post_comments_path(@post) do |f| %>
+<% #remote_form_for :comment, @comment, :url => post_comments_path(@post) do |f|  %>
+<% remote_form_for [@post, @comment] do |f| %>
+<% #form_for @comment, :url => post_comments_path(@post) do |f| %>
   <p>
 		<%= f.label :author, 'Name' %>:<br />
 		<%= f.text_field :author %>

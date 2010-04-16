@@ -7,7 +7,7 @@
 #   column: value
 
 lorem:
-  title: Lorem Ipsum
+  title: Lorem
   content: Lorem ipsum dolor sit amet.
   user_id: 1
   category_id: 1

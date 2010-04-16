@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 
   has_many :posts
+  has_many :user_privileges
+  has_many :privileges, :through => :user_privileges 
   validates_presence_of :username, :encrypted_password, :email
   validates_uniqueness_of :username, :email
   before_save :encrypt_password
@@ -15,6 +17,7 @@ class User < ActiveRecord::Base
   end
   
   def valid_password?(password)
+    logger.info(password_salt)
     User.crypt_password(password + self.password_salt) == self.encrypted_password
   end
     

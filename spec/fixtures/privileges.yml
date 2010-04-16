@@ -1,0 +1,7 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+to_create:
+  permission: creates
+
+to_destroy:
+  permission: destroys

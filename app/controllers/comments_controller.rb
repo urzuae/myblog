@@ -5,13 +5,25 @@ class CommentsController < ApplicationController
   def create
     
     @comment = @post.comments.build(params[:comment])
-    
-    flash[:notice] = if @comment.save
-      'Comment was successfully created'
-    else
-      'Comment was not created'
+    respond_to do |format|
+      format.js do
+        if @comment.save
+          render :update do |page|
+            page.insert_html(:bottom, 'comments', :partial => @comment)
+          end
+        end
+      end
+      format.html do
+        flash[:notice] = if @comment.save
+            'Comment was successfully created'
+          else
+            'Comment was not created'
+          end
+        redirect_to post_path(@post)
+      end
     end
-    redirect_to post_path(@post)
+    
+
   end
   
   def update
@@ -32,7 +44,7 @@ class CommentsController < ApplicationController
   end
   
   def find_post
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by_title!(params[:post_id])
   end
 
 

@@ -5,7 +5,7 @@ describe Post do
   
   it "should create a new instance given valid attributes" do
     post = create_post
-    post.new_record?.should_not be_true
+    violated "#{post.errors.full_messages.to_sentence}" if post.new_record?
   end
   
   it "should validate presence of title" do
